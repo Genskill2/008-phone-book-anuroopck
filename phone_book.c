@@ -45,7 +45,8 @@ int main(int argc, char *argv[])
     exit(1);
   } 
 
-  if (strcmp(argv[1], "add") == 0) {   /* Handle add */
+  if (strcmp(argv[1], "add") == 0) 
+  {   /* Handle add */
     if (argc != 4) 
     {
       print_usage("Improper arguments for add", argv[0]);
@@ -86,6 +87,13 @@ int main(int argc, char *argv[])
     fclose(fp);
     exit(0);
   }
+  else if (strcmp(argv[1], "delete") == 0) 
+  {
+    if (argc != 3) 
+    {
+      print_usage("Improper arguments for delete", argv[0]);
+      exit(1);
+    }
     FILE *fp = open_db_file();
     char *name = argv[2];
     if (!delete(fp, name)) 
@@ -96,7 +104,7 @@ int main(int argc, char *argv[])
     }
     fclose(fp);
     exit(0);
-   
+  }
     else
     {
       print_usage("Invalid command", argv[0]);
