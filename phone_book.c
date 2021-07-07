@@ -37,14 +37,17 @@ void write_all_entries(entry *); /* Given the first node of a linked
                                     the given entries into the file */
 
 
-int main(int argc, char *argv[]) {
-  if (argc == 1) {
+int main(int argc, char *argv[]) 
+{
+  if (argc == 1) 
+  {
     print_usage("Insufficient arguments", argv[0]);
     exit(1);
   } 
 
   if (strcmp(argv[1], "add") == 0) {   /* Handle add */
-    if (argc != 4) {
+    if (argc != 4) 
+    {
       print_usage("Improper arguments for add", argv[0]);
       exit(1);
     }
@@ -52,48 +55,59 @@ int main(int argc, char *argv[]) {
     char *phone = argv[3];
     add(name, phone);
     exit(0);
-  } else if (strcmp(argv[1], "list") == 0) {  /* Handle list */
-    if (argc != 2) {
-      print_usage("Improper arguments for list", argv[0]);
-      exit(1);
-    }
+  } 
+  else if (strcmp(argv[1], "list") == 0) 
+  {  /* Handle list */
+      if (argc != 2) 
+      {
+        print_usage("Improper arguments for list", argv[0]);
+        exit(1);
+      }
     FILE *fp = open_db_file();
     list(fp);
     fclose(fp);
     exit(0);
-  } else if (strcmp(argv[1], "search") == 0) {  /* Handle search */
-    if (argc != 3) {
-      print_usage("Improper arguments for delete", argv[0]);
-      exit(1);
   } 
+  else if (strcmp(argv[1], "search") == 0) 
+  {  /* Handle search */
+      if (argc != 3) 
+      {
+        print_usage("Improper arguments for delete", argv[0]);
+        exit(1);
+      } 
     FILE *fp = open_db_file();
     char *name = argv[2];
-    if (!search(fp, name)) {
-      printf("no match\n");
-      fclose(fp);
-      exit(1);
+    if (!search(fp, name)) 
+      {
+        printf("no match\n");
+        fclose(fp);
+        exit(1);
       }
     fclose(fp);
     exit(0);
   }
     FILE *fp = open_db_file();
     char *name = argv[2];
-    if (!delete(fp, name)) {
+    if (!delete(fp, name)) 
+    {
       printf("no match\n");
       fclose(fp);
       exit(1);
     }
     fclose(fp);
     exit(0);
-  } else {
-    print_usage("Invalid command", argv[0]);
-    exit(1);
-  }
+   
+    else
+    {
+      print_usage("Invalid command", argv[0]);
+      exit(1);
+    }
 }
 
-FILE *open_db_file() {
-  FILE *fp=fopen(DB, "r");
-  if (fp == NULL) {
+    FILE *open_db_file() 
+{
+    FILE *fp=fopen(DB, "r");
+    if (fp == NULL) {
     perror("Couldn't open database file");
     exit(1);
   }
