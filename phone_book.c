@@ -221,7 +221,7 @@ void list(FILE *db_file) {
     p=p->next;
     count++;
   }
-  printf("%d",count);
+  printf("Total  entries: %d\n",count);
   free_entries(base);
 }
 int search(FILE *db_file, char *name){
@@ -268,10 +268,11 @@ int delete(FILE *db_file, char *name) {
       }
       else
       {
+        deleted = 1;
         prev->next = p->next;
         free(p);
         p = prev->next;
-        deleted = 1;
+        continue;
       }
     }
     prev = p;
