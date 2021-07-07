@@ -160,11 +160,14 @@ entry *load_entries(FILE *fp) {
 }
 
 void write_all_entries(entry * p) {
+  int count=0;
   FILE *fp = fopen(DB, "w");
   while (p != NULL) {
     fprintf(fp, "%s,%s\n", p->name, p->phone);
     p = p->next;
+    count++;
   }
+  printf("%d",count);
   fclose(fp);
 }
 
